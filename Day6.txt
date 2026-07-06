@@ -1,0 +1,38 @@
+Day 6 Tasks:
+1. Load your M1 cleaned dataset (Universal for everyone)
+What this means: You need to load the data you cleaned previously into your coding environment so your program can read it. What to do: Use pd.read_csv() from the pandas library to load your saved CSV file. Checks to run:
+
+Use .shape to see how many rows and columns your data has.
+Use .dtypes to make sure your columns are the correct type (like numbers for math, or text for labels).
+Use .isnull().sum() to make sure there is no missing data. Fix any missing data before continuing. Note: Everyone does this step exactly the same way, no matter what kind of project you have.
+2. Separate features and target, then split (Universal for everyone)
+What this means: In machine learning, we use "features" (clues or inputs) to predict a "target" (the answer or output). We also need to split our data into a "training set" (for the model to learn from) and a "testing set" (to quiz the model later). What to do:
+
+Create a variable X that contains all your feature columns.
+Create a variable y that contains your target column.
+Use the function train_test_split(X, y, test_size=0.2, random_state=42) to split your data. This saves 20% of the data for the final quiz. Checks to run: Print the shape of the four new arrays (X_train, X_test, y_train, y_test) to make sure they look right. Note: Using random_state=42 makes sure that every time you run this code, it splits the data the exact same way. This is important for comparing different models fairly on Day 7!
+3. Apply required preprocessing (Specific to your project)
+What this means: Machine learning models only understand numbers. If you have text categories (like "red", "blue") or numbers on vastly different scales (like age vs. income), you have to convert or adjust them so the math works properly. What to do:
+
+Categorical (Text) Data: Use LabelEncoder or OneHotEncoder.
+Numerical Scaling: Use StandardScaler if your numbers are on very different scales.
+Text/NLP Projects (e.g., Shaik): Use TfidfVectorizer.
+Similarity Projects (e.g., Mithun): Use CountVectorizer. CRITICAL RULE: Only "teach" or fit your transformers on the training data (X_train), and then apply them to both training and testing sets. Never fit transformers on your test data—this is like giving the student the answers to the quiz before they take it! Save these tools as .pkl files immediately so you can use them later.
+4. Train your primary algorithm (Specific to your project)
+What this means: This is where the actual "learning" happens. We give the model the training features (X_train) and the correct answers (y_train) so it can find the patterns. What to do:
+
+Choose your main machine learning model and create it with its default settings.
+Tell it to learn by running the code: model.fit(X_train, y_train).
+Special Cases:
+Paul Surya: Use the yfinance library to get stock data and calculate indicators like RSI/MACD/MA first.
+Harish: Load the MIT-BIH ECG dataset and run an Isolation Forest model.
+Mithun: Calculate a cosine similarity matrix using the output from your CountVectorizer. Note: Don't worry about tweaking the model's settings to make it perfect today. We will do that on Day 8!
+5. Run predictions and print raw results (Universal for everyone)
+What this means: Now that the model has learned, it's time to test it! We will ask it to make predictions on the test data it hasn't seen yet (X_test) and see how well it did. What to do:
+
+Make predictions by running model.predict(X_test).
+Print out the first 10 predictions the model made right next to the actual 10 correct answers so you can eyeball how well it did.
+If you are building a classification model (predicting categories), also run model.predict_proba(X_test) to see how confident the model was in its choices.
+Check that the number of predictions matches the number of actual answers (y_test).
+Finally: Save your trained model to a file using joblib.dump(model, 'first_model.pkl') so you don't have to train it all over again tomorrow.
+Colab Link: https://colab.research.google.com/drive/1FDSSc9X5MSHJyJo_X0z6wH5UAshX_LPv?usp=sharing
